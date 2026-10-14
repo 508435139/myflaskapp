@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/508435139/myflaskapp.git', branch: 'main'
+                git url: 'https://github.com/508435139/flask-web-app.git', branch: 'main'
             }
         }
         stage('Fix pip') {
