@@ -2,9 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // ⚠️ 改成你自己的 python.exe 完整路径（双反斜杠转义）
-        // 查看方法：在 CMD 里执行  where python
-        PYTHON_PATH = 'C:\\Users\\钟徐果\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe'
+        PYTHON_PATH = 'D:\\harmony\\install\\python\\python.exe'
     }
 
     stages {
@@ -12,23 +10,19 @@ pipeline {
             steps {
                 bat """
                     @echo off
-                    echo "=== 验证Python路径及版本 ==="
                     ${PYTHON_PATH} --version
-                    echo "Python路径验证通过！"
                 """
             }
         }
         stage('Checkout') {
             steps {
-                // ⚠️ 改成你自己的仓库地址
-                git url: 'https://github.com/508435139/flask-web-app.git', branch: 'main'
+                git url: 'https://github.com/508435139/myflaskapp.git', branch: 'main'
             }
         }
         stage('Fix pip') {
             steps {
                 bat """
                     @echo off
-                    echo "=== 修复Python的pip环境 ==="
                     ${PYTHON_PATH} -m ensurepip --upgrade
                     ${PYTHON_PATH} -m pip --version
                 """
